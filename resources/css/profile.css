@@ -1,0 +1,34 @@
+.profile-container {
+    @apply max-w-4xl mx-auto p-8 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg shadow-lg mt-8;
+}
+
+.profile-header {
+    @apply text-center mb-8;
+}
+
+.profile-image-container {
+    @apply relative w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden shadow-xl 
+    ring-4 ring-purple-400 ring-offset-4 hover:ring-indigo-500 transition-all duration-300;
+}
+
+.profile-image {
+    @apply w-full h-full object-cover hover:scale-110 transition-transform duration-300;
+}
+
+.profile-name {
+    @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r 
+    from-purple-600 to-indigo-600 mb-2;
+}
+
+.profile-info {
+    @apply text-gray-700 max-w-2xl mx-auto text-center leading-relaxed;
+}
+
+.profile-section {
+    @apply mt-8 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+}
+
+.about-button {
+    @apply inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-indigo-600 
+    text-white rounded-full transition-colors duration-300 mt-4 font-medium;
+}

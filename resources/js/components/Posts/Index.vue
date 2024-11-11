@@ -76,10 +76,10 @@
                 {{ post.id }}
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-                {{ post.title }}
+                {{ post.judul }}
               </td>
               <td class="px-6 py-4 whitespace-normal text-sm leading-5 text-gray-900">
-                {{ post.content }}
+                {{ post.body }}
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                 {{ formatDate(post.created_at) }}
@@ -157,8 +157,8 @@
         sortOrder: 'asc',
         headers: [
           { key: 'id', label: 'ID' },
-          { key: 'title', label: 'Title' },
-          { key: 'content', label: 'Content' },
+          { key: 'judul', label: 'Judul' },
+          { key: 'body', label: 'Body' },
           { key: 'created_at', label: 'Created At' }
         ]
       }
@@ -169,8 +169,8 @@
         return this.posts.filter(post => {
           const searchRegex = new RegExp(this.searchQuery, 'i')
           return (
-            searchRegex.test(post.title) ||
-            searchRegex.test(post.content) ||
+            searchRegex.test(post.judul) ||
+            searchRegex.test(post.body) ||
             searchRegex.test(post.id.toString())
           )
         }).sort((a, b) => {

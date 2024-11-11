@@ -23,6 +23,15 @@ class PostController extends Controller
             ], 500);
         }
     }
+    public function show($id)
+    {
+        try {
+            $post = Post::findOrFail($id);
+            return response()->json($post);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Post not found'], 404);
+        }
+    }
 
     public function store(Request $request)
     {
