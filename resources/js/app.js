@@ -1,8 +1,10 @@
 import './bootstrap';
+import { createApp } from 'vue'; 
+import PostsIndex from './components/Posts/Index.vue';
+import router from './router'; 
 
-import { createApp } from 'vue' 
-import PostsIndex from './components/Posts/Index.vue' 
- 
-createApp({}) 
-    .component('PostsIndex', PostsIndex)
-    .mount('#app') 
+const app = createApp({})
+  .component('PostsIndex', PostsIndex)
+  .use(router);
+
+app.mount('#app');

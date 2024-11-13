@@ -76,7 +76,11 @@
                 {{ post.id }}
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-                {{ post.judul }}
+                <router-link 
+                    :to="{ name: 'PostDetail', params: { id: post.id }}"
+                    class="text-blue-500 hover:underline">
+                    {{ post.judul }}
+                </router-link>
               </td>
               <td class="px-6 py-4 whitespace-normal text-sm leading-5 text-gray-900">
                 {{ post.body }}

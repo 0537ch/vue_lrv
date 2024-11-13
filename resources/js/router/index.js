@@ -1,24 +1,25 @@
-// resources/js/router/index.js
+// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import PostList from '../components/PostList.vue';  // Your existing list component
-import PostDetail from '../components/PostDetail.vue';
+import Index from '@/components/Posts/Index.vue'
+import PostDetail from '@/components/Posts/PostDetail.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'posts',
-    component: PostList
-  },
-  {
-    path: '/post/:id',
-    name: 'post-detail',
-    component: PostDetail
-  }
-];
+    {
+        path: '/',
+        name: 'Index',
+        component: Index
+    },
+    {
+        path: '/artikel/:id',
+        name: 'PostDetail',
+        component: PostDetail,
+        props: true // Ini penting agar params.id bisa diakses sebagai prop
+    }
+]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;

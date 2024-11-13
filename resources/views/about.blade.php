@@ -12,7 +12,7 @@
             <h2 class="text-2xl font-semibold mb-2">My Background</h2>
             <p class="text-gray-700">I am a passionate developer with experience in web design and development. I specialize in creating engaging websites and applications, and I’m committed to continuous learning and improvement in my field.</p>
         </section>
-        
+    
         <section class="about-section mb-6 p-4 border border-gray-300 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold mb-2">My Values</h2>
             <ul class="list-disc pl-5 text-gray-700">
