@@ -1,4 +1,3 @@
-// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Index from '@/components/Posts/Index.vue'
 import PostDetail from '@/components/Posts/PostDetail.vue'
@@ -7,13 +6,14 @@ const routes = [
     {
         path: '/',
         name: 'Index',
-        component: Index
+        component: Index,
+        alias: '/blog'  // menambahkan alias untuk konsistensi dengan Laravel route
     },
     {
         path: '/artikel/:id',
         name: 'PostDetail',
         component: PostDetail,
-        props: true // Ini penting agar params.id bisa diakses sebagai prop
+        props: true // Untuk mengakses params.id sebagai prop
     }
 ]
 

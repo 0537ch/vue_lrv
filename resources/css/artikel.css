@@ -1,0 +1,75 @@
+/* CSS untuk latar belakang dan layout utama */
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+.bg-cover {
+    background-size: cover;
+}
+
+.bg-center {
+    background-position: center;
+}
+
+.max-w-7xl {
+    max-width: 80rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Transparansi pada container utama */
+.bg-white.bg-opacity-80 {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+/* Animasi transisi untuk router-view */
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+.footer-container {
+    @apply max-w-fit mx-auto mt-8 px-5 py-2.5 bg-white bg-opacity-90 rounded-lg shadow-md text-center;
+}
+
+.footer-text {
+    @apply text-gray-500 text-sm;
+}
+

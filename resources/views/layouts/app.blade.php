@@ -25,12 +25,14 @@
                 <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
+
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="bg-cover bg-center pt-6" style="background-image: url('/ghibli.jpg');">
+                
                 {{ $slot }}
             </main>
         </div>

@@ -1,6 +1,4 @@
-.profile-container {
-    @apply max-w-4xl mx-auto p-8 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg shadow-lg mt-8;
-}
+
 
 .profile-header {
     @apply text-center mb-8;
