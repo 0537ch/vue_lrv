@@ -4,16 +4,19 @@
     <div class="profile-container">
         <div class="profile-header">
             <div class="profile-image-container">
-                <img src="pi.jpg" alt="Image" style="width: 300px; display:block;margin:auto;">
+                <img src="pi.jpg" alt="Image" style="width: 300px; min-h-screen bg-cover bg-center bg-fixed display:block;margin:auto;">
             </div>
             <h1 class="profile-name">Abrar Ikramaputra</h1>
         </div>
 
-        <div class="profile-section">
+        <div class="profile-section bg-opacity-80">
             <div class="profile-info">
                 <p class="mb-4">
                     <span class="font-semibold">Mahasiswa Teknologi Rekayasa Internet</span>
-                    <br>Semester 7 angkatan 2021
+                    <br>Semester 7 angkatan 2021 
+                </p>
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim, dui vitae molestie congue, dolor ipsum feugiat dui, a lacinia metus nulla ac magna. Sed in diam urna. Etiam non finibus dolor. Maecenas facilisis, eros sit amet vestibulum rutrum, orci nibh lobortis nulla, sed varius ligula erat id lorem. Maecenas nisi velit, convallis ut tortor at, dictum euismod orci. Maecenas sed diam vel velit ornare elementum sit amet non turpis. Sed pharetra aliquet nisl. In porta mattis dui sit amet posuere. Nulla id vestibulum mauris, eget porta dolor. Cras quis erat sed nisl porttitor eleifend et in nulla. Nulla facilisi. Sed felis sapien, dapibus mollis tortor in, congue euismod neque. In dictum egestas enim, quis mattis augue scelerisque et.
                 </p>
                 
                 <div class="flex justify-center space-x-4 mb-4">

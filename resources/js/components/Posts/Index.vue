@@ -46,7 +46,7 @@
         </select>
       </div>
 
-      <table class="min-w-full divide-y divide-gray-200 border">
+      <table class="min-w-full divide-y">
         <thead>
           <tr>
             <th 
@@ -66,7 +66,7 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+        <tbody class="bg-white bg-opacity-80 divide-y divide-gray-200 divide-solid">
           <tr 
             v-for="post in paginatedAndFilteredPosts" 
             :key="post.id"
@@ -270,4 +270,9 @@ export default {
   color: #a1a1aa;
   background-color: #f3f4f6;
 }
+.table {
+  opacity: 0.8;
+  background-color: #244f7b; 
+}
+
 </style>
