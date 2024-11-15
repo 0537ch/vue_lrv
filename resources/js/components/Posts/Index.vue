@@ -47,6 +47,7 @@
       </div>
 
       <table class="min-w-full divide-y">
+        <div class="table-container">
         <thead>
           <tr>
             <th 
@@ -56,7 +57,7 @@
               @click="sortBy(header.key)"
             >
               <div class="flex items-center cursor-pointer">
-                <span class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <span class="text-xs leading-4 font-medium text-black uppercase tracking-wider">
                   {{ header.label }}
                 </span>
                 <span v-if="sortKey === header.key" class="ml-2">
@@ -90,6 +91,7 @@
             </td>
           </tr>
         </tbody>
+      </div>
       </table>
 
       <!-- Pagination -->
@@ -156,7 +158,7 @@ export default {
       error: null,
       searchQuery: '',
       currentPage: 1,
-      pageSize: 10,
+      pageSize: 5,
       sortKey: 'id',
       sortOrder: 'asc',
       headers: [
@@ -251,28 +253,55 @@ export default {
 </script>
 
 <style>
+.table-container {
+  background-color: rgba(255, 255, 255, 0.198); /* Warna latar belakang putih dengan 80% opacity */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px); /* Efek blur pada background */
+}
+
+.table-container table {
+  background-color: rgba(36, 79, 123, 0.8); /* Warna biru dengan transparansi */
+  opacity: 0.9;
+  color: white;
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #6c8dadb0; /* Warna solid untuk header */
+  color: #fff;
+}
+
+.table-container tbody tr:hover {
+  background-color: rgba(108, 142, 173, 0.2); /* Soft blue dengan transparansi */
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
 .pagination-button {
   cursor: pointer;
-  z-index: 10;
   padding: 8px 12px;
   border: 1px solid #d1d5db;
   margin: 0 2px;
   border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.7); /* Transparansi untuk tombol pagination */
+  color: #1f2937;
   transition: background-color 0.3s;
 }
 
 .pagination-button:hover {
-  background-color: #f1f5f9;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .pagination-button[disabled] {
   cursor: not-allowed;
   color: #a1a1aa;
-  background-color: #f3f4f6;
-}
-.table {
-  opacity: 0.8;
-  background-color: #244f7b; 
+  background-color: rgba(243, 244, 246, 0.5);
 }
 
 </style>

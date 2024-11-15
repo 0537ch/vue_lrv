@@ -17,7 +17,7 @@
             </div>
             <!-- Main Content Grid with Enhanced Cards -->
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Mission Section -->
+                <!-- Mission Section --><a href="/blog">
                 <div class="group p-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl hover:from-blue-400 hover:to-purple-500 transition-all duration-300">
                     <div class="group bg-gray-800 bg-opacity-80 backdrop-blur-lg p-6 rounded-lg hover:bg-gray-900 transition-all duration-300 border border-gray-800 hover:border-purple-500">
                         <div class="flex items-center mb-6">
