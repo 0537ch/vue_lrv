@@ -199,13 +199,13 @@ export default {
 
 
 :root {
-  --blue: rgba(38, 166, 154, 1); /* Teal utama */
+  --blue: rgb(42, 79, 192); /* Teal utama */
   --green: rgba(13, 71, 82, 1); /* Teal gelap untuk hover */
   --yellow: rgba(255, 234, 167, 0.8); /* Warna pendukung */
   --orange: rgba(240, 144, 84, 1); /* Bisa tetap sebagai aksen */
   --dark-bg: rgba(13, 71, 82, 1); /* Latar belakang gelap */
   --light-bg: rgba(224, 242, 241, 1); /* Teal terang */
-  --text: rgba(0, 51, 51, 0.9); /* Teks utama */
+  --text: rgb(0, 0, 0); /* Teks utama */
   --error-bg: rgba(255, 0, 0, 0.1); /* Tetap untuk error */
   --error-text: rgba(255, 0, 0, 0.8); /* Tetap untuk error */
 }
@@ -223,13 +223,11 @@ body {
   max-width: 1000px;
   margin: 10px auto;
   padding: 15px;
-  background: rgba(252, 252, 252, 0.198);
+  
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  box-shadow: 
-    3px 3px rgba(38, 166, 154, 0.2),
-    0 3px rgba(38, 166, 154, 0.1);
+  
 }
 
 
@@ -310,11 +308,12 @@ body {
 }
 
 .table-container th {
-  background: rgba(38, 166, 154, 0.8);
-  color: white;
+  background: rgb(216, 221, 229);
+  color: black;
   padding: 16px;
   font-weight: 500;
   letter-spacing: 0.5px;
+  border-radius: 2px;
 }
 
 .header-cell {
@@ -323,21 +322,21 @@ body {
 }
 
 .sort-indicator {
-  margin-left: 8px;
+  margin-left: 8px; 
   font-size: 0.75rem;
 }
 
 .table-container tbody tr {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
 
 .table-container tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .table-container tbody tr:hover {
-  background: rgba(38, 166, 154, 0.1);
+  background: rgba(38, 68, 166, 0.6);
   transform: translateY(-1px);
 }
 
@@ -365,21 +364,21 @@ body {
 
 .pagination-button {
   padding: 8px 12px;
-  border: 1px solid var(--blue);
+  border: 1px solid var(--light-bg);
   border-radius: 4px;
   background: rgba(38, 166, 154, 0.1);
-  color: var(--blue);
+  color: var(--light-bg);
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
 }
 
 .pagination-button:hover {
-  background: var(--blue);
+  background: var(--light-bg);
   color: #fff;
 }
 
 .pagination-button.active {
-  background: var(--blue);
+  background: rgb(63, 91, 216);
   color: #fff;
 }
 
