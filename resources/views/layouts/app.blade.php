@@ -31,7 +31,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="bg-cover bg-center pt-6" style="background-image: url('/ghibli.jpg');">
+            <main class="min-h-screen bg-cover bg-center pt-6" style="background-image: url('/ghibli.jpg');">
                 
                 {{ $slot }}
             </main>

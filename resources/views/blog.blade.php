@@ -1,10 +1,9 @@
 <x-app-layout>
-    @vite(['resources/css/artikel.css'])
-
+   
         <main class="max-w-4xl mx-auto px-auto sm:px-6 lg:px-8 py-8">
             <div class="min-h-screen bg-cover bg-center">
             <!-- Wrapper div untuk transparansi -->
-            <div class="bg-black bg-opacity-80 shadow-sm rounded-lg">
+            <div class="bg-white bg-opacity-80 shadow-sm rounded-2xl">
                 <router-view v-slot="{ Component }">
                     <transition
                         name="fade" 

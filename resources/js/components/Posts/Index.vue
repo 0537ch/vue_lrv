@@ -2,7 +2,7 @@
   <div class="wrapper">
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center py-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+      <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-teal-600"></div>
     </div>
 
     <!-- Error State -->
@@ -69,12 +69,12 @@
 
       <!-- Pagination -->
       <div class="pagination">
-        <button
+        <button 
           @click="currentPage--"
           :disabled="currentPage === 1"
           class="pagination-button"
         >
-          Previous
+          <
         </button>
         <button
           v-for="page in totalPages"
@@ -89,7 +89,7 @@
           :disabled="currentPage >= totalPages"
           class="pagination-button"
         >
-          Next
+          >
         </button>
       </div>
     </div>
@@ -194,25 +194,26 @@ export default {
 </script>
 
 <style>
-/* Impor Font Google */
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-/* Variabel CSS */
+
 :root {
-  --blue: rgba(79, 192, 210, 1);
-  --green: rgba(82, 210, 154, 1);
-  --yellow: rgba(231, 196, 104, 0.7);
-  --orange: rgba(235, 118, 85, 1);
-  --dark-bg: rgba(0, 0, 0, 0.9);
-  --light-bg: rgba(255, 255, 255, 0.1);
-  --text: rgba(255, 255, 255, 0.9);
-  --error-bg: rgba(255, 0, 0, 0.1);
-  --error-text: rgba(255, 0, 0, 0.8);
+  --blue: rgba(38, 166, 154, 1); /* Teal utama */
+  --green: rgba(13, 71, 82, 1); /* Teal gelap untuk hover */
+  --yellow: rgba(255, 234, 167, 0.8); /* Warna pendukung */
+  --orange: rgba(240, 144, 84, 1); /* Bisa tetap sebagai aksen */
+  --dark-bg: rgba(13, 71, 82, 1); /* Latar belakang gelap */
+  --light-bg: rgba(224, 242, 241, 1); /* Teal terang */
+  --text: rgba(0, 51, 51, 0.9); /* Teks utama */
+  --error-bg: rgba(255, 0, 0, 0.1); /* Tetap untuk error */
+  --error-text: rgba(255, 0, 0, 0.8); /* Tetap untuk error */
 }
+
 
 /* Body */
 body {
-  background: var(--dark-bg);
+  background: var(--light-bg);
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -220,15 +221,17 @@ body {
 .wrapper {
   width: 100%;
   max-width: 1000px;
-  margin: 20px auto;
-  padding: 20px;
-  background: var(--light-bg);
-  color: var(--text);
-  overflow: hidden;
+  margin: 10px auto;
+  padding: 15px;
+  background: rgba(252, 252, 252, 0.198);
+  border-radius: 16px;
   position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  box-shadow: 
+    3px 3px rgba(38, 166, 154, 0.2),
+    0 3px rgba(38, 166, 154, 0.1);
 }
+
 
 /* Loading State */
 .animate-spin {
@@ -272,32 +275,33 @@ body {
 
 /* Controls */
 .controls {
+  margin-bottom: 24px;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  gap: 16px;
 }
 
 .input-field {
-  padding: 10px 15px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.8);
-  color: #333;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(38, 166, 154, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--text);
+  transition: all 0.3s ease;
 }
 
 .input-field:focus {
-  outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(79, 192, 210, 0.3);
+  border-color: rgba(38, 166, 154, 0.8);
+  box-shadow: 0 0 0 4px rgba(38, 166, 154, 0.1);
 }
 
 /* Table Container */
 .table-container {
   width: 100%;
-  border-collapse: collapse;
   font-size: 0.875rem;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
+
 
 .table-container th,
 .table-container td {
@@ -306,10 +310,11 @@ body {
 }
 
 .table-container th {
-  background: var(--blue);
-  color: #fff;
-  cursor: pointer;
-  position: relative;
+  background: rgba(38, 166, 154, 0.8);
+  color: white;
+  padding: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .header-cell {
@@ -323,8 +328,8 @@ body {
 }
 
 .table-container tbody tr {
-  background: rgba(255, 255, 255, 0.1);
-  transition: background 0.3s;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
 }
 
 .table-container tbody tr:nth-child(even) {
@@ -332,15 +337,16 @@ body {
 }
 
 .table-container tbody tr:hover {
-  background: var(--blue);
+  background: rgba(38, 166, 154, 0.1);
+  transform: translateY(-1px);
 }
 
 .table-container tbody td {
-  color: #fff;
+  color: #000000;
 }
 
 .table-container tbody a {
-  color: var(--yellow);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -361,7 +367,7 @@ body {
   padding: 8px 12px;
   border: 1px solid var(--blue);
   border-radius: 4px;
-  background: rgba(79, 192, 210, 0.1);
+  background: rgba(38, 166, 154, 0.1);
   color: var(--blue);
   cursor: pointer;
   transition: background 0.3s, color 0.3s;

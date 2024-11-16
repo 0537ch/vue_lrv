@@ -1,7 +1,9 @@
-
+.profile-container {
+    @apply flex flex-col items-center justify-center min-h-screen p-4;
+}
 
 .profile-header {
-    @apply text-center mb-8;
+    @apply text-center mb-8 w-full max-w-5xl mx-auto;
 }
 
 .profile-image-container {
@@ -15,7 +17,7 @@
 
 .profile-name {
     @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r 
-    from-purple-600 to-indigo-600 mb-2;
+    from-purple-600 to-indigo-600 mb-2 text-center;
 }
 
 .profile-info {
@@ -23,10 +25,19 @@
 }
 
 .profile-section {
-    @apply mt-8 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply mt-8 p-6 bg-white opacity-75 rounded-lg shadow-md hover:shadow-lg 
+    max-w-5xl mx-auto w-full;
+}
+
+.button-container {
+    @apply flex justify-center gap-4 mt-6;
 }
 
 .about-button {
     @apply inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-indigo-600 
     text-white rounded-full transition-colors duration-300 mt-4 font-medium;
+}
+
+.food-buttons {
+    @apply flex justify-center gap-4 flex-wrap;
 }
