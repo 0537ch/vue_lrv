@@ -1,12 +1,12 @@
 <template>
-  <div class="overflow-hidden overflow-x-auto p-6 bg-white border-gray-200 rounded-lg">
+  <div class="wrapper">
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center py-8">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
     </div>
 
     <!-- Error State -->
-    <div v-else-if="error" class="bg-red-50 p-4 rounded-md">
+    <div v-else-if="error" class="error-state">
       <div class="flex">
         <div class="flex-shrink-0">
           <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -14,12 +14,9 @@
           </svg>
         </div>
         <div class="ml-3">
-          <h3 class="text-sm font-medium text-red-800">Error loading data</h3>
-          <p class="text-sm text-red-700 mt-1">{{ error }}</p>
-          <button 
-            @click="fetchPosts" 
-            class="mt-2 text-sm text-red-800 hover:text-red-900 font-medium"
-          >
+          <h3 class="error-title">Error loading data</h3>
+          <p class="error-message">{{ error }}</p>
+          <button @click="fetchPosts" class="error-button">
             Try Again
           </button>
         </div>
@@ -27,119 +24,73 @@
     </div>
 
     <!-- Data Table -->
-    <div v-else class="min-w-full align-middle">
+    <div v-else>
       <!-- Search and Controls -->
-      <div class="mb-4 flex justify-between items-center">
+      <div class="controls">
         <input
           v-model="searchQuery"
           type="text"
           placeholder="Search..."
-          class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="input-field"
         />
-        <select
-          v-model="pageSize"
-          class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
+        <select v-model="pageSize" class="input-field">
           <option :value="5">5 per page</option>
           <option :value="10">10 per page</option>
           <option :value="20">20 per page</option>
         </select>
       </div>
 
-      <table class="min-w-full divide-y">
-        <div class="table-container">
+      <table class="table-container">
         <thead>
           <tr>
-            <th 
-              v-for="header in headers" 
-              :key="header.key"
-              class="px-6 py-3 bg-gray-50 text-left"
-              @click="sortBy(header.key)"
-            >
-              <div class="flex items-center cursor-pointer">
-                <span class="text-xs leading-4 font-medium text-black uppercase tracking-wider">
-                  {{ header.label }}
-                </span>
-                <span v-if="sortKey === header.key" class="ml-2">
+            <th v-for="header in headers" :key="header.key" @click="sortBy(header.key)">
+              <div class="header-cell">
+                {{ header.label }}
+                <span v-if="sortKey === header.key" class="sort-indicator">
                   {{ sortOrder === 'asc' ? '↑' : '↓' }}
                 </span>
               </div>
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white bg-opacity-80 divide-y divide-gray-200 divide-solid">
-          <tr 
-            v-for="post in paginatedAndFilteredPosts" 
-            :key="post.id"
-            class="hover:bg-gray-50"
-          > 
-            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-              {{ post.id }}
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-              <router-link 
-                  :to="{ name: 'PostDetail', params: { id: post.id }}"
-                  class="text-blue-500 hover:underline">
-                  {{ post.judul }}
+        <tbody>
+          <tr v-for="post in paginatedAndFilteredPosts" :key="post.id">
+            <td>{{ post.id }}</td>
+            <td>
+              <router-link :to="{ name: 'PostDetail', params: { id: post.id }}">
+                {{ post.judul }}
               </router-link>
             </td>
-            <td class="px-6 py-4 whitespace-normal text-sm leading-5 text-gray-900">
-              {{ post.body }}
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-              {{ formatDate(post.created_at) }}
-            </td>
+            <td>{{ post.body }}</td>
+            <td>{{ formatDate(post.created_at) }}</td>
           </tr>
         </tbody>
-      </div>
       </table>
 
       <!-- Pagination -->
-      <div class="mt-4 flex items-center justify-between">
-        <div class="flex-1 flex justify-between sm:hidden">
-          <button
-            @click="currentPage--"
-            :disabled="currentPage === 1"
-            class="pagination-button"
-          >
-            Previous
-          </button>
-          <button
-            @click="currentPage++"
-            :disabled="currentPage >= totalPages"
-            class="pagination-button"
-          >
-            Next
-          </button>
-        </div>
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-          <div>
-            <p class="text-sm text-gray-700">
-              Showing
-              <span class="font-medium">{{ paginationStart + 1 }}</span>
-              to
-              <span class="font-medium">{{ paginationEnd }}</span>
-              of
-              <span class="font-medium">{{ filteredPosts.length }}</span>
-              results
-            </p>
-          </div>
-          <div>
-            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-              <button
-                v-for="page in totalPages"
-                :key="page"
-                @click="handlePageClick(page)"
-                :class="[
-                  'pagination-button',
-                  currentPage === page ? 'bg-blue-50 text-blue-600' : 'bg-white'
-                ]"
-              >
-                {{ page }}
-              </button>
-            </nav>
-          </div>
-        </div>
+      <div class="pagination">
+        <button
+          @click="currentPage--"
+          :disabled="currentPage === 1"
+          class="pagination-button"
+        >
+          Previous
+        </button>
+        <button
+          v-for="page in totalPages"
+          :key="page"
+          @click="handlePageClick(page)"
+          :class="['pagination-button', { active: currentPage === page }]"
+        >
+          {{ page }}
+        </button>
+        <button
+          @click="currentPage++"
+          :disabled="currentPage >= totalPages"
+          class="pagination-button"
+        >
+          Next
+        </button>
       </div>
     </div>
   </div>
@@ -199,15 +150,6 @@ export default {
 
     totalPages() {
       return Math.ceil(this.filteredPosts.length / this.pageSize)
-    },
-
-    paginationStart() {
-      return (this.currentPage - 1) * this.pageSize
-    },
-
-    paginationEnd() {
-      const end = this.paginationStart + this.pageSize
-      return Math.min(end, this.filteredPosts.length)
     }
   },
 
@@ -245,7 +187,6 @@ export default {
     },
 
     handlePageClick(page) {
-      console.log("Page clicked:", page)
       this.currentPage = page
     }
   }
@@ -253,55 +194,196 @@ export default {
 </script>
 
 <style>
-.table-container {
-  background-color: rgba(255, 255, 255, 0.198); /* Warna latar belakang putih dengan 80% opacity */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8px); /* Efek blur pada background */
+/* Impor Font Google */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+/* Variabel CSS */
+:root {
+  --blue: rgba(79, 192, 210, 1);
+  --green: rgba(82, 210, 154, 1);
+  --yellow: rgba(231, 196, 104, 0.7);
+  --orange: rgba(235, 118, 85, 1);
+  --dark-bg: rgba(0, 0, 0, 0.9);
+  --light-bg: rgba(255, 255, 255, 0.1);
+  --text: rgba(255, 255, 255, 0.9);
+  --error-bg: rgba(255, 0, 0, 0.1);
+  --error-text: rgba(255, 0, 0, 0.8);
 }
 
-.table-container table {
-  background-color: rgba(36, 79, 123, 0.8); /* Warna biru dengan transparansi */
-  opacity: 0.9;
-  color: white;
+/* Body */
+body {
+  background: var(--dark-bg);
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Wrapper */
+.wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--light-bg);
+  color: var(--text);
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading State */
+.animate-spin {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Error State */
+.error-state {
+  background: var(--error-bg);
+  color: var(--error-text);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.error-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.error-message {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.error-button {
+  margin-top: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--error-text);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.error-button:hover {
+  color: darken(var(--error-text), 10%);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  padding: 10px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(79, 192, 210, 0.3);
+}
+
+/* Table Container */
+.table-container {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
 }
 
 .table-container th,
 .table-container td {
-  padding: 12px 16px;
+  padding: 12px 15px;
   text-align: left;
 }
 
 .table-container th {
-  background-color: #6c8dadb0; /* Warna solid untuk header */
+  background: var(--blue);
   color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.header-cell {
+  display: flex;
+  align-items: center;
+}
+
+.sort-indicator {
+  margin-left: 8px;
+  font-size: 0.75rem;
+}
+
+.table-container tbody tr {
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.table-container tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .table-container tbody tr:hover {
-  background-color: rgba(108, 142, 173, 0.2); /* Soft blue dengan transparansi */
-  border-radius: 1rem;
-  transition: all 0.3s ease-in-out;
+  background: var(--blue);
+}
+
+.table-container tbody td {
+  color: #fff;
+}
+
+.table-container tbody a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.table-container tbody a:hover {
+  text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 5px;
 }
 
 .pagination-button {
-  cursor: pointer;
   padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  margin: 0 2px;
+  border: 1px solid var(--blue);
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.7); /* Transparansi untuk tombol pagination */
-  color: #1f2937;
-  transition: background-color 0.3s;
+  background: rgba(79, 192, 210, 0.1);
+  color: var(--blue);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
 }
 
 .pagination-button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: var(--blue);
+  color: #fff;
+}
+
+.pagination-button.active {
+  background: var(--blue);
+  color: #fff;
 }
 
 .pagination-button[disabled] {
   cursor: not-allowed;
-  color: #a1a1aa;
-  background-color: rgba(243, 244, 246, 0.5);
+  opacity: 0.5;
 }
 
+/* Keyframe Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 </style>

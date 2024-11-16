@@ -1,8 +1,8 @@
 <x-app-layout>
     @vite(['resources/css/artikel.css'])
 
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="min-h-screen bg-gray-50 bg-cover bg-center" style="background-image: url('/ghibli.jpg');">
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="min-h-screen bg-cover bg-center">
             <!-- Wrapper div untuk transparansi -->
             <div class="bg-white bg-opacity-80 shadow-sm rounded-lg">
                 <router-view v-slot="{ Component }">
