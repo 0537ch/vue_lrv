@@ -17,6 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     public function posts()
+     {
+         return $this->hasMany(Post::class, 'author_id');
+     }
+     
     protected $fillable = [
         'name',
         'email',
