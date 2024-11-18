@@ -34,6 +34,14 @@
                             : 'from-blue-500 to-purple-400 hover:text-blue-700' }}">
                         {{ __('Blog') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')"
+                        class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300
+                        {{ request()->routeIs('login') 
+                            ? 'text-blue-600 font-semibold' 
+                            : 'from-blue-500 to-purple-400 hover:text-blue-700' }}">
+                        {{ __('login') }}
+                    </x-nav-link>
                 </div>
             </div>
  

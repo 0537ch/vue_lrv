@@ -3,7 +3,7 @@
         <main class="max-w-4xl mx-auto px-auto sm:px-6 lg:px-8 py-8">
             <div class="min-h-screen bg-cover bg-center">
             <!-- Wrapper div untuk transparansi -->
-            <div class="group p-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl opacity-90 hover:from-blue-400 hover:to-purple-500 transition-all duration-300">
+            <div class="group p-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl opacity-85 hover:from-blue-400 hover:to-purple-500 transition-all duration-300">
                 <router-view v-slot="{ Component }">
                     <transition
                         name="fade" 

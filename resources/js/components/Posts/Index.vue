@@ -197,41 +197,38 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-
 :root {
   --blue: rgb(42, 79, 192); /* Teal utama */
   --green: rgba(13, 71, 82, 1); /* Teal gelap untuk hover */
   --yellow: rgba(255, 234, 167, 0.8); /* Warna pendukung */
-  --orange: rgba(240, 144, 84, 1); /* Bisa tetap sebagai aksen */
+  --orange: rgba(240, 144, 84, 1); /* Aksen */
   --dark-bg: rgba(13, 71, 82, 1); /* Latar belakang gelap */
   --light-bg: rgba(224, 242, 241, 1); /* Teal terang */
   --text: rgb(0, 0, 0); /* Teks utama */
-  --error-bg: rgba(255, 0, 0, 0.1); /* Tetap untuk error */
-  --error-text: rgba(255, 0, 0, 0.8); /* Tetap untuk error */
+  --error-bg: rgba(255, 0, 0, 0.1); /* Latar error */
+  --error-text: rgba(255, 0, 0, 0.8); /* Teks error */
 }
 
-
-/* Body */
 body {
   background: var(--light-bg);
   font-family: 'Open Sans', sans-serif;
 }
 
-/* Wrapper */
 .wrapper {
   width: 100%;
   max-width: 1000px;
   margin: 10px auto;
   padding: 15px;
-  
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  
 }
 
+/* Animasi Spin */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-/* Loading State */
 .animate-spin {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-top: 4px solid var(--blue);
@@ -268,10 +265,10 @@ body {
 }
 
 .error-button:hover {
-  color: darken(var(--error-text), 10%);
+  color: rgba(255, 0, 0, 1);
 }
 
-/* Controls */
+/* Kontrol (Search dan Page Size) */
 .controls {
   margin-bottom: 24px;
   display: flex;
@@ -292,14 +289,15 @@ body {
   box-shadow: 0 0 0 4px rgba(38, 166, 154, 0.1);
 }
 
-/* Table Container */
+/* Tabel Data */
 .table-container {
   width: 100%;
   font-size: 0.875rem;
   background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .table-container th,
 .table-container td {
@@ -316,23 +314,13 @@ body {
   border-radius: 2px;
 }
 
-.header-cell {
-  display: flex;
-  align-items: center;
-}
-
-.sort-indicator {
-  margin-left: 8px; 
-  font-size: 0.75rem;
-}
-
 .table-container tbody tr {
   background: rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
 
 .table-container tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(240, 240, 255, 0.3);
 }
 
 .table-container tbody tr:hover {
@@ -341,16 +329,17 @@ body {
 }
 
 .table-container tbody td {
-  color: #000000;
+  color: var(--text);
 }
 
 .table-container tbody a {
-  color: var(--text);
+  color: var(--blue);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .table-container tbody a:hover {
-  text-decoration: underline;
+  color: var(--orange);
 }
 
 /* Pagination */
@@ -367,7 +356,7 @@ body {
   border: 1px solid var(--light-bg);
   border-radius: 4px;
   background: rgba(38, 166, 154, 0.1);
-  color: var(--light-bg);
+  color: var(--dark-bg);
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
 }
@@ -378,7 +367,7 @@ body {
 }
 
 .pagination-button.active {
-  background: rgb(63, 91, 216);
+  background: var(--blue);
   color: #fff;
 }
 
@@ -387,8 +376,14 @@ body {
   opacity: 0.5;
 }
 
-/* Keyframe Animations */
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* Keyframe Transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>

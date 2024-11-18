@@ -10,16 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('users');
-            $table->text('body');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('posts', function (Blueprint $table) {
+        $table->id();
+        $table->string('judul');
+        $table->unsignedBigInteger('author_id')->nullable(); // Make author_id nullable
+        $table->foreign('author_id')->references('id')->on('users')->onDelete('set null'); // Optional: set author_id to null when user is deleted
+        $table->text('body');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
